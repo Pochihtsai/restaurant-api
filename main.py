@@ -4,9 +4,7 @@ import requests
 
 app = Flask(__name__)
 
-GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
-
-# 環境變數（建議從 Render dashboard 設定）
+# 環境變數
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 WEATHER_API_KEY = os.environ.get("WEATHER_API_KEY")  # 需申請 OpenWeather API 金鑰
 
@@ -39,7 +37,6 @@ def get_weather_by_coordinates():
     return jsonify(response.json())
 
 # 3️⃣ 附近餐廳搜尋
->>>>>>> 5876667 (更新 main.py：補齊 API 路由)
 @app.route("/getNearbyRestaurants")
 def get_nearby_restaurants():
     lat = request.args.get("lat")
@@ -54,16 +51,6 @@ def get_nearby_restaurants():
         "keyword": keyword,
         "key": GOOGLE_API_KEY
     }
-<<<<<<< HEAD
-
-    response = requests.get(url, params=params)
-    return jsonify(response.json())
-
-@app.route("/")
-def home():
-    return "API is running."
-
-=======
     response = requests.get(url, params=params)
     return jsonify(response.json())
 
@@ -102,6 +89,5 @@ def home():
     return "Smart Restaurant Assistant API is running."
 
 # 🔄 啟動伺服器
->>>>>>> 5876667 (更新 main.py：補齊 API 路由)
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
